@@ -20,18 +20,17 @@ class RoleChecker
     //     return $next($request);
     // }
     public function handle($request, Closure $next, $clientsRole, $systemAdminRole, $superAdminRole)
-{
-    $roles = Auth::check() ? Auth::user()->role_id->pluck('role_id')->toArray() : [];
+    {
+        $roles = Auth::check() ? Auth::user()->role_id->pluck('role_id')->toArray() : [];
 
-    if (in_array($clientsRole, $roles)) {
-        return $next($request);
-    } else if (in_array($systemAdminRole, $roles)) {
-        return $next($request);
-    } else if (in_array($superAdminRole, $roles)) {
-        return $next($request);
-    } 
+        if (in_array($clientsRole, $roles)) {
+            return $next($request);
+        } else if (in_array($systemAdminRole, $roles)) {
+            return $next($request);
+        } else if (in_array($superAdminRole, $roles)) {
+            return $next($request);
+        }
 
-    return Redirect::route('home');
-}
-
+        return Redirect::route('home');
+    }
 }
