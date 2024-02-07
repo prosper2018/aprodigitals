@@ -31,6 +31,6 @@ class RoleChecker
             return $next($request);
         }
 
-        return Redirect::route('home');
+        return redirect()->route('home');
     }
 }
